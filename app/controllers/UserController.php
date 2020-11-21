@@ -1,12 +1,15 @@
 <?php
 
-declare(strict_types=1);
+// declare(strict_types=1);
+namespace app\controllers;
 
 use Phalcon\Di as Di;
 use Phalcon\Mvc\Model\Manager;
 use Phalcon\Mvc\Model\Query;
 
 use Phalcon\Flash\Session;
+
+use app\models\User;
 
 class UserController extends \Phalcon\Mvc\Controller
 {
@@ -54,7 +57,7 @@ class UserController extends \Phalcon\Mvc\Controller
             if ($user->save()) {
                 $this->flashSession->message('add-user', 'User berhasil ditambahkan');
                 return $this->response->redirect('user');
-            }else{
+            } else {
                 echo "gagal menyimpan hubungi admin";
                 exit();
             }
@@ -83,17 +86,17 @@ class UserController extends \Phalcon\Mvc\Controller
             ]
         );
         if ($user != NULL || $cek != "") {
-            if($this->request->isPost()){
+            if ($this->request->isPost()) {
                 // $user = new User();
                 $username = $this->request->get('username');
                 $password = $this->request->get('password');
                 $level_user = $this->request->get('level_user');
 
-                if($password == ""){
+                if ($password == "") {
                     $user->username = $username;
                     $user->level_user = $level_user;
                     $user->update_user = date('Y-m-d H:i:s');
-                }else{
+                } else {
                     $user->username = $username;
                     $user->password = password_hash($password, PASSWORD_DEFAULT);
                     $user->level_user = $level_user;
@@ -102,11 +105,11 @@ class UserController extends \Phalcon\Mvc\Controller
                 if ($user->save()) {
                     $this->flashSession->message('edit-user', 'User berhasil diupdate');
                     return $this->response->redirect('user');
-                }else{
+                } else {
                     echo "gagal mengupdate hubungi admin";
                     exit();
                 }
-            }else{
+            } else {
                 $this->view->setVars(
                     [
                         'user'  =>  $user,
@@ -126,16 +129,16 @@ class UserController extends \Phalcon\Mvc\Controller
     {
         $user = User::findFirstByIdUser($id);
 
-        if($user != NULL || $user != ""){
-            if($this->request->isPost()){
-                if($user->delete()){
+        if ($user != NULL || $user != "") {
+            if ($this->request->isPost()) {
+                if ($user->delete()) {
                     $this->flashSession->message('delete-user', 'User berhasil dihapus');
                     return $this->response->redirect('user');
-                }else{
+                } else {
                     echo "gagal menghapus hubungi admin";
                     exit();
                 }
-            }else{
+            } else {
                 $this->view->setVars(
                     [
                         'user'  =>  $user,
@@ -145,9 +148,22 @@ class UserController extends \Phalcon\Mvc\Controller
                 );
                 return $this->view;
             }
-        }else{
+        } else {
             $this->flashSession->message('no-id', 'Id Tidak Ditemukan');
             return $this->response->redirect('user');
         }
     }
+
+    public function pelatihanAction()
+    {
+        $kali = $this->kali(10, 20);
+        echo $kali;
+    }
+
+    // Function
+    public function kali($a, $b)
+    {
+        return $a * $b;
+    }
+    
 }
