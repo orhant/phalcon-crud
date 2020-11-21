@@ -21,14 +21,24 @@ if (!empty($messages)) {
 				<strong>Updated!</strong> ' . $messages["edit-user"][0] . '
 			</div>
 			';
-	} elseif (array_key_exists('no-id', $messages)) {
+	} elseif (array_key_exists('delete-user', $messages)) {
+		echo '
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<strong>Deleted!</strong> ' . $messages["delete-user"][0] . '
+			</div>
+			';
+	}elseif (array_key_exists('no-id', $messages)) {
 		echo '
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<strong>Not Id!</strong> ' . $messages["no-id"][0] . '
+				<strong>No Id!</strong> ' . $messages["no-id"][0] . '
 			</div>
 			';
 	}

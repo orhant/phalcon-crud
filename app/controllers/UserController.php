@@ -29,8 +29,7 @@ class UserController extends \Phalcon\Mvc\Controller
                 'js'    =>  'public/js/user/index.js',
             ]
         );
-        // return $this->view->pick('user/list');
-        return $this->view->user;
+        return $this->view;
     }
 
     public function addAction()
@@ -52,9 +51,12 @@ class UserController extends \Phalcon\Mvc\Controller
             $user->create_user = date('Y-m-d H:i:s');
             $user->update_user = date('Y-m-d H:i:s');
 
-            if ($user->create()) {
+            if ($user->save()) {
                 $this->flashSession->message('add-user', 'User berhasil ditambahkan');
                 return $this->response->redirect('user');
+            }else{
+                echo "gagal menyimpan hubungi admin";
+                exit();
             }
         } else {
             $this->view->setVars(
@@ -63,7 +65,7 @@ class UserController extends \Phalcon\Mvc\Controller
                     'js'    =>  'public/js/user/add.js'
                 ]
             );
-            return $this->view->user;
+            return $this->view;
         }
     }
 
@@ -101,7 +103,7 @@ class UserController extends \Phalcon\Mvc\Controller
                     $this->flashSession->message('edit-user', 'User berhasil diupdate');
                     return $this->response->redirect('user');
                 }else{
-                    echo "gagal nyimpan";
+                    echo "gagal mengupdate hubungi admin";
                     exit();
                 }
             }else{
@@ -112,7 +114,7 @@ class UserController extends \Phalcon\Mvc\Controller
                         'js'    =>  'public/js/user/edit.js'
                     ]
                 );
-                return $this->view->user;
+                return $this->view;
             }
         } else {
             $this->flashSession->message('no-id', 'Id Tidak Ditemukan');
@@ -122,6 +124,30 @@ class UserController extends \Phalcon\Mvc\Controller
 
     public function deleteAction($id)
     {
-        echo $id;
+        $user = User::findFirstByIdUser($id);
+
+        if($user != NULL || $user != ""){
+            if($this->request->isPost()){
+                if($user->delete()){
+                    $this->flashSession->message('delete-user', 'User berhasil dihapus');
+                    return $this->response->redirect('user');
+                }else{
+                    echo "gagal menghapus hubungi admin";
+                    exit();
+                }
+            }else{
+                $this->view->setVars(
+                    [
+                        'user'  =>  $user,
+                        'title' =>  'Delete User',
+                        'js'    =>  'public/js/user/delete.js'
+                    ]
+                );
+                return $this->view;
+            }
+        }else{
+            $this->flashSession->message('no-id', 'Id Tidak Ditemukan');
+            return $this->response->redirect('user');
+        }
     }
 }
