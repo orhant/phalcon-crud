@@ -1,2 +1,0 @@
-Aku Sayang 
-{{sayang}}

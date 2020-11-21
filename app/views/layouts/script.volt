@@ -28,6 +28,16 @@
 <script src="{{url('public/AdminLTE-3.0.5/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('public/AdminLTE-3.0.5/dist/js/adminlte.js')}}"></script>
+
+<!-- DataTables -->
+<script src="{{url('public/AdminLTE-3.0.5/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('public/AdminLTE-3.0.5/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{url('public/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{url('public/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('public/AdminLTE-3.0.5/dist/js/demo.js')}}"></script>
+
+<!-- Select2 -->
+<script src="{{url('public/AdminLTE-3.0.5/plugins/select2/js/select2.full.min.js')}}"></script>

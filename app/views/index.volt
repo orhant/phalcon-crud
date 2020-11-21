@@ -13,8 +13,8 @@
 				</div>
 				<section class="content">
 					<div class="container-fluid">
-            <?php echo $this->getContent(); ?>
-          </div>
+						{{content()}}
+					</div>
 				</section>
 			</div>
 			{% include "layouts/footer.volt" %}
@@ -23,5 +23,8 @@
 		</div>
 
 		{% include "layouts/script.volt" %}
+
+		<script src="{{url(js)}}"></script>
+
 	</body>
 </html>

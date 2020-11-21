@@ -20,6 +20,10 @@
 	<!-- JQVMap -->
 	<link
 	rel="stylesheet" href="{{url('public/AdminLTE-3.0.5/plugins/jqvmap/jqvmap.min.css')}}">
+
+	<!-- Select2 -->
+    <link rel="stylesheet" href="{{ url('public/AdminLTE-3.0.5/plugins/select2/css/select2.min.css') }}">
+
 	<!-- Theme style -->
 	<link
 	rel="stylesheet" href="{{url('public/AdminLTE-3.0.5/dist/css/adminlte.min.css')}}">
@@ -34,4 +38,11 @@
 	rel="stylesheet" href="{{url('public/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css')}}">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="{{url('public/download/font-google/font-family.css')}}" rel="stylesheet">
+
+	<!-- Data Table  -->
+    <link rel="stylesheet" href="{{url('public/AdminLTE-3.0.5/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/AdminLTE-3.0.5/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
+    <!-- <link rel="shortcut icon" href="{{url('public/AdminLTE-3.0.5/dist/img/AdminLTELogo.png')}}" type="image/x-icon"> -->
+    <!-- <link rel="stylesheet" href="{{url('public/AdminLTE-3.0.5/plugins/datatables/buttons.dataTables.min.css')}}"> -->
 </head>
