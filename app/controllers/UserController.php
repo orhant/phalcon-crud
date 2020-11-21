@@ -1,14 +1,8 @@
 <?php
 
-// declare(strict_types=1);
+declare(strict_types=1);
+
 namespace app\controllers;
-
-use Phalcon\Di as Di;
-use Phalcon\Mvc\Model\Manager;
-use Phalcon\Mvc\Model\Query;
-
-use Phalcon\Flash\Session;
-
 use app\models\User;
 
 class UserController extends \Phalcon\Mvc\Controller
@@ -16,14 +10,6 @@ class UserController extends \Phalcon\Mvc\Controller
 
     public function indexAction()
     {
-        // $condition = [
-        //     'id_user' => 3,
-        //     'username' => 'nisa'
-        // ];
-        // $users = User::get_where($condition);
-
-        // return $this->view->pick('user/list');
-
         $users = User::find();
         $this->view->setVars(
             [
@@ -165,5 +151,4 @@ class UserController extends \Phalcon\Mvc\Controller
     {
         return $a * $b;
     }
-    
 }
