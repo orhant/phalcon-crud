@@ -24,8 +24,9 @@ class UserController extends \Phalcon\Mvc\Controller
         $users = User::find();
         $this->view->setVars(
             [
-                'js'    =>  'public/js/user/index.js',
                 'users'      =>  $users,
+                'title' =>  'List User',
+                'js'    =>  'public/js/user/index.js',
             ]
         );
         // return $this->view->pick('user/list');
@@ -58,6 +59,7 @@ class UserController extends \Phalcon\Mvc\Controller
         } else {
             $this->view->setVars(
                 [
+                    'title' =>  'Add User',
                     'js'    =>  'public/js/user/add.js'
                 ]
             );
@@ -70,7 +72,7 @@ class UserController extends \Phalcon\Mvc\Controller
         $condition = [
             'id_user'   =>  $id
         ];
-        $cek = User::findFirst(
+        $user = User::findFirst(
             [
                 'columns'   =>  '*',
                 'conditions' =>
@@ -78,11 +80,48 @@ class UserController extends \Phalcon\Mvc\Controller
                 'bind' => $condition
             ]
         );
-        if ($cek != NULL || $cek != "") {
-            return $this->view->user;
+        if ($user != NULL || $cek != "") {
+            if($this->request->isPost()){
+                // $user = new User();
+                $username = $this->request->get('username');
+                $password = $this->request->get('password');
+                $level_user = $this->request->get('level_user');
+
+                if($password == ""){
+                    $user->username = $username;
+                    $user->level_user = $level_user;
+                    $user->update_user = date('Y-m-d H:i:s');
+                }else{
+                    $user->username = $username;
+                    $user->password = password_hash($password, PASSWORD_DEFAULT);
+                    $user->level_user = $level_user;
+                    $user->update_user = date('Y-m-d H:i:s');
+                }
+                if ($user->save()) {
+                    $this->flashSession->message('edit-user', 'User berhasil diupdate');
+                    return $this->response->redirect('user');
+                }else{
+                    echo "gagal nyimpan";
+                    exit();
+                }
+            }else{
+                $this->view->setVars(
+                    [
+                        'user'  =>  $user,
+                        'title' =>  'Edit User',
+                        'js'    =>  'public/js/user/edit.js'
+                    ]
+                );
+                return $this->view->user;
+            }
         } else {
             $this->flashSession->message('no-id', 'Id Tidak Ditemukan');
             return $this->response->redirect('user');
         }
+    }
+
+    public function deleteAction($id)
+    {
+        echo $id;
     }
 }

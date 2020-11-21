@@ -1,28 +1,38 @@
 <?php
-	$messages = $this->flashSession->getMessages();
-	if(!empty($messages)){
-		if(array_key_exists('add-user', $messages)){
-			echo '
+$messages = $this->flashSession->getMessages();
+if (!empty($messages)) {
+	if (array_key_exists('add-user', $messages)) {
+		echo '
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<strong>Added!</strong> '.$messages["add-user"][0].'
+				<strong>Added!</strong> ' . $messages["add-user"][0] . '
 			</div>
 			';
-		}elseif(array_key_exists('no-id', $messages)){
-			echo '
+	} elseif (array_key_exists('edit-user', $messages)) {
+		echo '
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<strong>Updated!</strong> ' . $messages["edit-user"][0] . '
+			</div>
+			';
+	} elseif (array_key_exists('no-id', $messages)) {
+		echo '
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<strong>Not Id!</strong> '.$messages["no-id"][0].'
+				<strong>Not Id!</strong> ' . $messages["no-id"][0] . '
 			</div>
 			';
-		}
 	}
+}
 ?>
 
 
@@ -33,7 +43,7 @@
 	</div>
 	<div class="card-body">
 		<table class="datatables table table-bordered table-striped">
-			<a href="<?=$this->url->get('user/add')?>">
+			<a href="<?= $this->url->get('user/add') ?>">
 				<button class="btn btn-sm btn-primary float-right">
 					<i class="fa fa-plus-circle" aria-hidden="true"></i>
 					Tambah</button>
@@ -49,21 +59,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($users as $k => $v): ?>
+				<?php foreach ($users as $k => $v) : ?>
 					<tr>
-						<td><?= $k+1 ?></td>
+						<td><?= $k + 1 ?></td>
 						<td><?= $v->username ?></td>
 						<td><?= $v->level_user ?></td>
-						<td><?= $v->create_user?></td>
+						<td><?= $v->create_user ?></td>
 						<td><?= $v->update_user ?></td>
 						<td>
-							<a href="<?=$this->url->get('user/edit/'.$v->id_user)?>">
+							<a href="<?= $this->url->get('user/edit/' . $v->id_user) ?>">
 								<button class="btn btn-sm btn-success">
 									<i class="fas fa-edit"></i>
 									Edit
 								</button>
 							</a>
-							<a href="<?=$this->url->get('user/delete/'.$v->id_user)?>">
+							<a href="<?= $this->url->get('user/delete/' . $v->id_user) ?>">
 								<button class="btn btn-sm btn-danger">
 									<i class="fas fa-trash"></i>
 									Delete
@@ -71,7 +81,7 @@
 							</a>
 						</td>
 					</tr>
-				<?php endforeach?>
+				<?php endforeach ?>
 			</tbody>
 			<tfoot>
 				<tr class="text-center">
