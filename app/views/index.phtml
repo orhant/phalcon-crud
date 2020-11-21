@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!-- {% include "layouts/head.volt" %} -->
+<?php include 'layouts/head.phtml'; ?>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+	<div class="wrapper">
+		<!-- {% include "layouts/navbar.volt" %} -->
+		<?php include 'layouts/navbar.phtml'; ?>
+
+		<!-- {% include "layouts/sidebar.volt" %} -->
+		<?php include 'layouts/sidebar.phtml'; ?>
+		<div class="content-wrapper">
+			<div class="content-header">
+				<div class="container-fluid">
+					<!-- {% include "layouts/breadcrumb.volt" %} -->
+					<?php include 'layouts/breadcrumb.phtml'; ?>
+				</div>
+			</div>
+			<section class="content">
+				<div class="container-fluid">
+					<!-- {{content()}} -->
+					<?php echo $this->getContent(); ?>
+
+				</div>
+			</section>
+		</div>
+		<!-- {% include "layouts/footer.volt" %} -->
+		<?php include 'layouts/footer.phtml'; ?>
+
+
+		<aside class="control-sidebar control-sidebar-dark"></aside>
+	</div>
+
+	<!-- {% include "layouts/script.volt" %} -->
+	<?php include 'layouts/script.phtml'; ?>
+
+
+	<script src="<?=$this->url->get($js)?>"></script>
+
+</body>
+
+</html>

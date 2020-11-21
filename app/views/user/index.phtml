@@ -1,5 +1,3 @@
-<!-- ?php var_dump($this->flashSession->getMessages());?> -->
-
 <?php
 	$messages = $this->flashSession->getMessages();
 	if(!empty($messages)){
@@ -35,7 +33,7 @@
 	</div>
 	<div class="card-body">
 		<table class="datatables table table-bordered table-striped">
-			<a href="{{url('/user/add') }}">
+			<a href="<?=$this->url->get('user/add')?>">
 				<button class="btn btn-sm btn-primary float-right">
 					<i class="fa fa-plus-circle" aria-hidden="true"></i>
 					Tambah</button>
@@ -51,21 +49,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for user in users %}
+				<?php foreach ($users as $k => $v): ?>
 					<tr>
-						<td>{{loop.index}}</td>
-						<td>{{user.username}}</td>
-						<td>{{user.level_user}}</td>
-						<td>{{user.create_user}}</td>
-						<td>{{user.update_user}}</td>
-						<td class="text-center">
-							<a href="{{url('user/edit/'~user.id_user)}}">
+						<td><?= $k+1 ?></td>
+						<td><?= $v->username ?></td>
+						<td><?= $v->level_user ?></td>
+						<td><?= $v->create_user?></td>
+						<td><?= $v->update_user ?></td>
+						<td>
+							<a href="<?=$this->url->get('user/edit/'.$v->id_user)?>">
 								<button class="btn btn-sm btn-success">
 									<i class="fas fa-edit"></i>
 									Edit
 								</button>
 							</a>
-							<a href="{{url('user/edit/'~user.id_user)}}">
+							<a href="<?=$this->url->get('user/delete/'.$v->id_user)?>">
 								<button class="btn btn-sm btn-danger">
 									<i class="fas fa-trash"></i>
 									Delete
@@ -73,7 +71,7 @@
 							</a>
 						</td>
 					</tr>
-				{% endfor %}
+				<?php endforeach?>
 			</tbody>
 			<tfoot>
 				<tr class="text-center">
